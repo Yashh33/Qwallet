@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Form</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+    body {
+      background-color: rgba(137, 43, 226, 0.219);
+      overflow: hidden;
+    }
+
+    ::selection {
+      background: rgba(26, 188, 156, 0.3);
+    }
+
+    .container {
+      max-width: 440px;
+      padding: 0 20px;
+      margin: 170px auto;
+    }
+
+    .wrapper {
+      width: 100%;
+      background: #fff;
+      border-radius: 5px;
+      box-shadow: 0px 4px 10px 1px rgba(0, 0, 0, 0.1);
+    }
+
+    .wrapper .title {
+      height: 90px;
+      background: #f2c8f96d;
+      border-radius: 5px 5px 0 0;
+      color: black;
+      font-size: 30px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .wrapper .row {
+      height: 50px;
+      margin-bottom: 15px;
+      position: relative;
+    }
+
+    input {
+      width: 100%;
+      outline: none;
+      padding: 10px 10px;
+      margin: 30px auto;
+      border-radius: 5px;
+      border: 1px solid lightgrey;
+      font-size: 16px;
+    }
+
+    .row input:focus {
+      border: 1px solid #e4bdfa;
+      box-shadow: inset 0px 0px 2px 2px rgba(222, 142, 239, 0.25);
+    }
+
+    .row input::placeholder {
+      color: #999;
+    }
+
+    .login {
+      height: 50px;
+      width: 100%;
+      outline: none;
+      margin-top: 40px;
+      padding-left: 10px;
+      border-radius: 5px;
+      border: 1px solid lightgrey;
+      font-size: 16px;
+      color: black;
+      font-size: 20px;
+      font-weight: 500;
+      padding-left: -10 px;
+      background: #f2c8f9d8;
+      cursor: pointer;
+    }
+
+    .login:active {
+      scale: 0.95;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="wrapper">
+      <div class="title"><span>ADMIN LOGIN</span></div>
+      <div>
+        <div class="row">
+          <input name="uname" type="text" placeholder="Admin ID" required>
+        </div>
+        <div class="row">
+          <input name="psw" type="password" placeholder="Password" required>
+        </div>
+        <div class="button">
+          <button class="login" type="button" onclick="login()">LOGIN</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+    function login() {
+      var username = document.getElementsByName('uname')[0].value;
+      var password = document.getElementsByName('psw')[0].value;
+
+      if (username === "admin" && password === "admin") {
+        window.location.href = "admin.html";
+      } else {
+        alert("Invalid username or password!");
+      }
+
+      return false;
+    }
+  </script>
+</body>
+
+</html>

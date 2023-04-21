@@ -1,0 +1,111 @@
+*{
+    margin: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body{
+    background: url(https://media.istockphoto.com/id/674585488/vector/money-seamless-pattern-background-with-icons.jpg?s=612x612&w=0&k=20&c=S3ids-pK5iG4m4andUB1J67P7ELQiVLROJo8sdwUR6M=);
+}
+
+.container{
+    width: 80%;
+    margin: 0 auto;
+}
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin: 0 auto;
+    /* mix-blend-mode: color-burn; */
+}
+
+nav{
+    width: 40%;
+    display: flex;
+    justify-content: space-between;
+    font-size: large;
+    font-weight: bolder;
+}
+
+nav a:hover{
+    background-color: rgba(42, 151, 165, 0.387);
+}
+
+nav a{
+    text-decoration: none;
+    color: black;
+    padding: 10px 2%;
+    border-radius: 5px;
+}
+
+
+h1{
+    width: 40%;
+    margin: 0 auto;
+    text-align: center;
+}
+.btn{
+    padding: 10px 20px;
+    background-color: rgba(42, 151, 165, 0.387);
+    width: 25%;
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+    text-decoration: none;
+    text-align: center;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+
+.message{
+    font-size: 30px;
+    padding: 20px;
+    width: 70%;
+    margin: 15% auto;
+    background-color: rgba(42, 151, 165, 0.387);
+}
+
+.btn:hover{
+    opacity: 0.7;
+}
+
+.btns{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 200px;
+}
+
+@media only screen and (max-width : 1000px) {
+    
+    nav{
+        width: 80%;
+    }
+
+    .btn{
+        width: 60%;
+    }
+    
+    .btns{
+        margin-top: 150px;
+    }
+}
+
+@media only screen and (max-width : 650px) {
+    header{
+        flex-direction: column;
+        width: 100%;
+    }
+
+    nav{
+        flex-wrap: wrap;
+    }
+    nav a{
+        width: 30%;
+    }
+
+    .btns{
+        margin-top: 100px;
+    }
+}
