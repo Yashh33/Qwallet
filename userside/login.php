@@ -18,24 +18,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
  
   
   // Verify login credentials
-  $sql = $conn->prepare("SELECT * FROM registration WHERE email = ? AND password = ?");
-  $sql->bind_param("ss", $email,$password);
+  $sql = $conn->prepare("SELECT * FROM registration WHERE email = ?");
+  $sql->bind_param("s", $email);
   $sql->execute();
   $result = $sql->get_result();
   
 if($result->num_rows>0)
 {
-  $row = mysqli_fetch_assoc($result);
+  $row = $result->fetch_assoc();
+  $hashed_password = $row['password'];
+
+  if (password_verify($password,$hashed_password)){
   $_SESSION['email'] = $row['email'];
   $_SESSION['name'] = $row['name'];
     header("location: userhome.php");
     exit();
+  } else {
+    echo '<script> alert (" incorrect password "); setTimeout(function() {alert.close();}, 300);</script>';
+    echo "<meta http-equiv='refresh' content='0;url=http://localhost/qwallet/userside/index.html'>";
+  }
 
 }else{
-  echo "<script>alert('Incorrect email & Password')</script>";
+  echo "<script>alert('Incorrect email & Password')setTimeout(function() {alert.close();}, 300);</script>";
   echo "<meta http-equiv='refresh' content='0;url=http://localhost/qwallet/userside/index.html'>";
-  echo "<script>setTimeout(function(){alert.close();}, 3000);</script>";
   exit();
-   
 }
 }

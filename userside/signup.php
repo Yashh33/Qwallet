@@ -8,6 +8,7 @@ $host = 'localhost';
 $username = $_POST['name'];
 $email = $_POST['email'];
 $password = $_POST['password'];
+$hashed_password = password_hash($password, PASSWORD_DEFAULT);
 $dbname = 'user_registration';
 $conn = mysqli_connect($host, "root", "", $dbname);
 
@@ -40,7 +41,7 @@ $_SESSION['email'] = $email;
 $_SESSION['name'] = $name;
 
 // inserts the values of signup page to the table 
-$sql = "INSERT INTO registration (name, email, password) VALUES ('$name', '$email', '$password')";
+$sql = "INSERT INTO registration (name, email, password) VALUES ('$name', '$email', '$hashed_password')";
 if (mysqli_query($conn, $sql)) {
   // Registration successful, so redirect to the user panel
   header("location: userhome.php");
