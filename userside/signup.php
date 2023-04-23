@@ -37,6 +37,7 @@ $conn = new mysqli("localhost", "root", "", "user_registration");
 
 //take email for the session
 $_SESSION['email'] = $email;
+$_SESSION['name'] = $name;
 
 // inserts the values of signup page to the table 
 $sql = "INSERT INTO registration (name, email, password) VALUES ('$name', '$email', '$password')";

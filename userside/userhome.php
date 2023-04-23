@@ -2,7 +2,7 @@
 
 // session continue
 session_start();
-if (isset($_SESSION['email'])) {
+if (isset($_SESSION['email']) && isset($_SESSION['name'])) {
 
     ?>
     <!DOCTYPE html>

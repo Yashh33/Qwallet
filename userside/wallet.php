@@ -2,7 +2,7 @@
 
 session_start();
 
-if (isset($_SESSION['email'])) {
+if (isset($_SESSION['email']) && isset($_SESSION['name'])) {
 
   ?>
   <!DOCTYPE html>
@@ -79,7 +79,7 @@ if (isset($_SESSION['email'])) {
           if (mysqli_affected_rows($conn) > 0) {
             // redemption was successful
             echo "<b>Congratulations,<br> you earned " . $rewardPoints . " Points!</b><br>";
-            echo "<br><b><i>" . $user_email . "'s</b></i> wallet balance is " . $new_balance . " points!";
+            echo '<br><b style="text-transform:capitalize;"><i>' . $_SESSION['name'] . "'s</b></i> wallet balance is " . $new_balance . " points!";
           } else {
             // there was an error updating the reward status
             echo "Error redeeming reward. Please try again later.";
@@ -96,7 +96,7 @@ if (isset($_SESSION['email'])) {
             $result = mysqli_query($conn, $sql);
             $row = mysqli_fetch_assoc($result);
             $show_balance = $row['wallet_balance'];
-            echo "<br><b><i>" . $user_email . "'s</b></i> wallet balance is " . $show_balance . "Points!"; // shows wallet balance 
+            echo '<br><b style="text-transform:capitalize;"><i>' . $_SESSION['name'] . "'s</b></i> wallet balance is " . $show_balance . "Points!"; // shows wallet balance 
           } else {
             // reward id does not exist or has been deactivated
             echo "<b>Invalid Code: This code is not valid.</b><br>";
@@ -104,7 +104,7 @@ if (isset($_SESSION['email'])) {
             $result = mysqli_query($conn, $sql);
             $row = mysqli_fetch_assoc($result);
             $show_balance = $row['wallet_balance'];
-            echo "<br><b><i>" . $user_email . "'s</i></b> wallet balance is " . $show_balance . "Points!";// shows wallet balance 
+            echo '<br><b style="text-transform:capitalize;"><i>' . $_SESSION['name'] . "'s</i></b> wallet balance is " . $show_balance . "Points!";// shows wallet balance 
           }
         }
       }

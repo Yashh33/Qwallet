@@ -27,7 +27,7 @@ if($result->num_rows>0)
 {
   $row = mysqli_fetch_assoc($result);
   $_SESSION['email'] = $row['email'];
-  $_SESSION['id'] = $row['id'];
+  $_SESSION['name'] = $row['name'];
     header("location: userhome.php");
     exit();
 
@@ -40,7 +40,3 @@ if($result->num_rows>0)
 }
 }
  ?>
-  
-
-
-  
