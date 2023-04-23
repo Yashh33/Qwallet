@@ -96,7 +96,7 @@ if (isset($_SESSION['email']) && isset($_SESSION['name'])) {
             $result = mysqli_query($conn, $sql);
             $row = mysqli_fetch_assoc($result);
             $show_balance = $row['wallet_balance'];
-            echo '<br><b style="text-transform:capitalize;"><i>' . $_SESSION['name'] . "'s</b></i> wallet balance is " . $show_balance . "Points!"; // shows wallet balance 
+            echo '<br><b style="text-transform:capitalize;"><i>' . $_SESSION['name'] . "'s</b></i> wallet balance is " . $show_balance . " Points!"; // shows wallet balance 
           } else {
             // reward id does not exist or has been deactivated
             echo "<b>Invalid Code: This code is not valid.</b><br>";
@@ -104,7 +104,7 @@ if (isset($_SESSION['email']) && isset($_SESSION['name'])) {
             $result = mysqli_query($conn, $sql);
             $row = mysqli_fetch_assoc($result);
             $show_balance = $row['wallet_balance'];
-            echo '<br><b style="text-transform:capitalize;"><i>' . $_SESSION['name'] . "'s</i></b> wallet balance is " . $show_balance . "Points!";// shows wallet balance 
+            echo '<br><b style="text-transform:capitalize;"><i>' . $_SESSION['name'] . "'s</i></b> wallet balance is " . $show_balance . " Points!";// shows wallet balance 
           }
         }
       }
