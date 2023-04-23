@@ -4,7 +4,7 @@
 session_start();
 if (isset($_SESSION['email']) && isset($_SESSION['name'])) {
 
-    ?>
+?>
     <!DOCTYPE html>
     <html lang="en">
 
@@ -38,7 +38,7 @@ if (isset($_SESSION['email']) && isset($_SESSION['name'])) {
 
     </html>
 
-    <?php
+<?php
 } else {
 
     //if the user doesn't have a session, send them to login page

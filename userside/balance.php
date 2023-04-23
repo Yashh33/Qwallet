@@ -3,8 +3,8 @@
 session_start();
 
 if (isset($_SESSION['email']) && isset($_SESSION['name'])) {
-    
-    ?>
+
+?>
     <!DOCTYPE html>
     <html lang="en">
 
@@ -30,20 +30,20 @@ if (isset($_SESSION['email']) && isset($_SESSION['name'])) {
         </header>
 
         <?php
-    
+
         // establish database connection
         $conn = mysqli_connect('localhost', 'root', '', 'user_registration');
-        
+
         // Execute the SQL query
         $sql = "SELECT name, wallet_balance
                 FROM registration
                 ORDER BY wallet_balance DESC
                 LIMIT 5";
         $result = mysqli_query($conn, $sql);
-        
+
         // Fetch the results as an array of associative arrays
         $results = mysqli_fetch_all($result, MYSQLI_ASSOC);
-        
+
         // Output the results
         echo '<h1 style="width: 40%;margin: 20px auto;text-align: center;">Leaderboard</h1>';
         foreach ($results as $row) {
@@ -52,15 +52,15 @@ if (isset($_SESSION['email']) && isset($_SESSION['name'])) {
             margin: 1px auto;text-transform: capitalize;
             background:rgba(42, 151, 165, 0.187);"><b>' . $row['name'] . ': </b>' . $row['wallet_balance'] . ' Points</div><br>';
         }
-        
+
         // Close connection
         mysqli_close($conn);
-    
+
         ?>
     </body>
 
     </html>
-    <?php
+<?php
 } else {
     header("location: index.html");
 }

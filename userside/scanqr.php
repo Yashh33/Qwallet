@@ -4,7 +4,7 @@ session_start();
 
 if (isset($_SESSION['email']) && isset($_SESSION['name'])) {
 
-    ?>
+?>
     <!DOCTYPE html>
     <html lang="en">
 
@@ -117,14 +117,12 @@ if (isset($_SESSION['email']) && isset($_SESSION['name'])) {
 
 
         <script>
-
-
             const scanner = new Html5QrcodeScanner('reader', {
                 // Scanner will be initialized in DOM inside element with id of 'reader'
                 qrbox: {
                     width: 250,
                     height: 250,
-                },  // Sets dimensions of scanning box (set relative to reader element width)
+                }, // Sets dimensions of scanning box (set relative to reader element width)
                 fps: 20, // Frames per second to attempt a scan
             });
 
@@ -147,13 +145,12 @@ if (isset($_SESSION['email']) && isset($_SESSION['name'])) {
                 console.error(err);
                 // Prints any errors to the console
             }
-
         </script>
     </body>
 
     </html>
 
-    <?php
+<?php
 } else {
     header("location: index.html");
 }

@@ -4,7 +4,7 @@ session_start();
 
 if (isset($_SESSION['email']) && isset($_SESSION['name'])) {
 
-  ?>
+?>
   <!DOCTYPE html>
   <html lang="en">
 
@@ -89,7 +89,7 @@ if (isset($_SESSION['email']) && isset($_SESSION['name'])) {
           $sql = "SELECT * FROM rewards WHERE reward_id = '$uniqueId' AND status = 1";
           $result = mysqli_query($conn, $sql);
 
-          if (mysqli_num_rows($result) > 0) {// checks if row exist with status 1
+          if (mysqli_num_rows($result) > 0) { // checks if row exist with status 1
             // reward has already been redeemed
             echo "<b>Invalid Code: This code has already been redeemed.</b><br>";
             $sql = "SELECT wallet_balance FROM registration WHERE email = '$user_email'";
@@ -104,7 +104,7 @@ if (isset($_SESSION['email']) && isset($_SESSION['name'])) {
             $result = mysqli_query($conn, $sql);
             $row = mysqli_fetch_assoc($result);
             $show_balance = $row['wallet_balance'];
-            echo '<br><b style="text-transform:capitalize;"><i>' . $_SESSION['name'] . "'s</i></b> wallet balance is " . $show_balance . " Points!";// shows wallet balance 
+            echo '<br><b style="text-transform:capitalize;"><i>' . $_SESSION['name'] . "'s</i></b> wallet balance is " . $show_balance . " Points!"; // shows wallet balance 
           }
         }
       }
@@ -117,7 +117,7 @@ if (isset($_SESSION['email']) && isset($_SESSION['name'])) {
   </body>
 
   </html>
-  <?php
+<?php
 } else {
   header("location: index.html");
 }

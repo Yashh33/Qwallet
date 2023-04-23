@@ -18,18 +18,18 @@ $reward_id = mysqli_real_escape_string($conn, $_POST['reward_id']);
 $reward_points = mysqli_real_escape_string($conn, $_POST['reward_points']);
 
 $sql = "SELECT * FROM rewards WHERE reward_id = '$reward_id'";
-$check = mysqli_query($conn,$sql);
-if (mysqli_num_rows($check) > 0){
+$check = mysqli_query($conn, $sql);
+if (mysqli_num_rows($check) > 0) {
   echo "<script>alert('The reward id already exist.')</script>";
   echo "<meta http-equiv='refresh' content='0;url=http://localhost/qwallet/adminside/admin.html'>";
-}else{
-// Insert the data into the database
-$sql = "INSERT INTO rewards (reward_id, reward_points) VALUES ('$reward_id','$reward_points')";
-if (mysqli_query($conn, $sql)) {
-  echo "";
 } else {
-  echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-}
+  // Insert the data into the database
+  $sql = "INSERT INTO rewards (reward_id, reward_points) VALUES ('$reward_id','$reward_points')";
+  if (mysqli_query($conn, $sql)) {
+    echo "";
+  } else {
+    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+  }
 }
 ?>
 
@@ -72,28 +72,29 @@ if (mysqli_query($conn, $sql)) {
   <a class="btn" href="http://localhost/qwallet/userside/index.html">
     Click to move userside!
   </a>
-<div class="btn">
-  <?php
+  <div class="btn">
+    <?php
 
-// fetch the past reward id with reward points 
-$sql = "SELECT reward_id, reward_points
+    // fetch the past reward id with reward points 
+    $sql = "SELECT reward_id, reward_points
         FROM rewards
         ORDER BY reward_id DESC";
-$result = mysqli_query($conn, $sql);
+    $result = mysqli_query($conn, $sql);
 
-// Fetch the results as an array of associative arrays
-$results = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    // Fetch the results as an array of associative arrays
+    $results = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-// gives the output of the result
-echo '<i>PAST REWARDS</i><br><br>';
-echo '<div>';
-foreach ($results as $row) {
-    echo $row['reward_id'] . ': ' . $row['reward_points'] . '<br>';
-} echo '</div>';
+    // gives the output of the result
+    echo '<i>PAST REWARDS</i><br><br>';
+    echo '<div>';
+    foreach ($results as $row) {
+      echo $row['reward_id'] . ': ' . $row['reward_points'] . '<br>';
+    }
+    echo '</div>';
 
-// Close connection
-mysqli_close($conn);
-?></div>
+    // Close connection
+    mysqli_close($conn);
+    ?></div>
 </body>
 
 </html>
