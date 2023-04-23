@@ -79,7 +79,7 @@ if (isset($_SESSION['email']) && isset($_SESSION['name'])) {
           if (mysqli_affected_rows($conn) > 0) {
             // redemption was successful
             echo "<b>Congratulations,<br> you earned " . $rewardPoints . " Points!</b><br>";
-            echo '<br><b style="text-transform:capitalize;"><i>' . $_SESSION['name'] . "'s</b></i> wallet balance is " . $new_balance . " points!";
+            echo '<br><b style="text-transform:capitalize;"><i>' . $_SESSION['name'] . "'s</b></i> wallet balance is " . $new_balance . " Points!";
           } else {
             // there was an error updating the reward status
             echo "Error redeeming reward. Please try again later.";
@@ -89,7 +89,7 @@ if (isset($_SESSION['email']) && isset($_SESSION['name'])) {
           $sql = "SELECT * FROM rewards WHERE reward_id = '$uniqueId' AND status = 1";
           $result = mysqli_query($conn, $sql);
 
-          if (mysqli_num_rows($result) > 0) {// checks if the status of the unique id is 1
+          if (mysqli_num_rows($result) > 0) {// checks if row exist with status 1
             // reward has already been redeemed
             echo "<b>Invalid Code: This code has already been redeemed.</b><br>";
             $sql = "SELECT wallet_balance FROM registration WHERE email = '$user_email'";

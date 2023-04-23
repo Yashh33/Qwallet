@@ -12,7 +12,7 @@ if (isset($_SESSION['email']) && isset($_SESSION['name'])) {
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+        <title>Qwallet - ScanQR</title>
         <script src="./node_modules/html5-qrcode/html5-qrcode.min.js"></script>
         <style>
             header {

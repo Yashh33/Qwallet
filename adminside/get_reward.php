@@ -1,5 +1,5 @@
 <?php
-// THIS FILES SENDS REWAERD ID, POINTS IN DB
+// THIS FILES SENDS REWARD ID, POINTS IN DB
 
 // Connect to the database
 $host = 'localhost';
@@ -17,12 +17,19 @@ if (mysqli_connect_error()) {
 $reward_id = mysqli_real_escape_string($conn, $_POST['reward_id']);
 $reward_points = mysqli_real_escape_string($conn, $_POST['reward_points']);
 
+$sql = "SELECT * FROM rewards WHERE reward_id = '$reward_id'";
+$check = mysqli_query($conn,$sql);
+if (mysqli_num_rows($check) > 0){
+  echo "<script>alert('The reward id already exist.')</script>";
+  echo "<meta http-equiv='refresh' content='0;url=http://localhost/qwallet/adminside/admin.html'>";
+}else{
 // Insert the data into the database
 $sql = "INSERT INTO rewards (reward_id, reward_points) VALUES ('$reward_id','$reward_points')";
 if (mysqli_query($conn, $sql)) {
   echo "";
 } else {
   echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+}
 }
 ?>
 
@@ -33,7 +40,7 @@ if (mysqli_query($conn, $sql)) {
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title> Rewards </title>
   <link rel="stylesheet" href="indexmain.css">
   <style>
     body {
