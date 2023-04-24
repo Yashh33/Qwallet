@@ -24,6 +24,7 @@ if (isset($_SESSION['email']) && isset($_SESSION['name'])) {
             <nav>
                 <a href="userhome.php">HOME</a>
                 <a href="scanqr.php">SCAN-QR</a>
+                <a href="mywallet.php">MY-WALLET</a>
                 <a href="balance.php">LEADERBOARD</a>
                 <a href="logout.php">LOG OUT</a>
             </nav>

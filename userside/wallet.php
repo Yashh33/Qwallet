@@ -80,6 +80,8 @@ if (isset($_SESSION['email']) && isset($_SESSION['name'])) {
             // redemption was successful
             echo "<b>Congratulations,<br> you earned " . $rewardPoints . " Points!</b><br>";
             echo '<br><b style="text-transform:capitalize;"><i>' . $_SESSION['name'] . "'s</b></i> wallet balance is " . $new_balance . " Points!";
+            $sql = "INSERT INTO user_rewards (email, reward_id, points_rewarded) VALUES ('$user_email', '$uniqueId', $rewardPoints)";
+            mysqli_query($conn,$sql);
           } else {
             // there was an error updating the reward status
             echo "Error redeeming reward. Please try again later.";
