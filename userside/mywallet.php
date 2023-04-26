@@ -29,7 +29,8 @@ if (isset($_SESSION['email']) && isset($_SESSION['name'])) {
       </nav>
     </header>
 
-    <div class="wallet_history">
+    <div style="background:rgba(78,78,78,0.1);width:32%;height:310px;padding-top:5px;margin:0 auto;font-size:22px;"><div style="font-weight:bolder;text-align:center;">YOUR WALLET HISTORY</div>
+    <div class="wallet_history" style="width: 98%;margin:auto;height:98%;overflow-y: scroll;background: rgba(42, 151, 165, 0.187);">
         <?php 
         // Create connection
 $conn = new mysqli("localhost", "root", "", "user_registration");
@@ -47,10 +48,11 @@ $name = mysqli_query($conn, $sql);
 //echo '<h1 style="width: 40%;margin: 20px auto;text-align: center;">' . $name ."'s wallet history</h1>";
 foreach ($results as $row) {
     $created_at = date('H:i, d-m-Y. ', strtotime($row['created_at']));
-    echo '<div style="padding: 1px 20px;font-size:20px;width: 35%;margin: 1px auto;background:rgba(42, 151, 165, 0.187);"><b><span style="margin-left:5%;margin-right:5%;">' . $row['points_rewarded'] . ' Points<span></b> added on  ' . $created_at . '</div><br>';
+    echo '<br><div style="padding: 1px 20px;font-size:20px;margin: 1px auto;background:rgba( 78, 78, 78,0.1);">' . $row['points_rewarded'] . ' Points added<span style="float:right;"> - ' . $created_at . '<span></div>';
 }
         ?>
     </div>
+</div>  
     </body>
 
   </html>
