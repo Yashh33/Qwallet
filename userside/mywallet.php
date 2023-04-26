@@ -5,59 +5,113 @@ session_start();
 if (isset($_SESSION['email']) && isset($_SESSION['name'])) {
 
 ?>
-  <!DOCTYPE html>
-  <html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
 
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style/indexmain.css">
-  </head>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Qwallet - My Wallet</title>
+        <link rel="stylesheet" href="style/indexmain.css">
+        <style>
+            .wallet-history-container {
+                background-color: rgba(27, 26, 26, 0.55);
+                margin: 0 auto;
+                width: 32%;
+                height: 310px;
+                padding-top: 5px;
+                font-size: 22px;
+                border: 3px solid rgba(42, 151, 165, 0.587);
+                border-radius: 10px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                color:white;
+            }
 
-  <body>
-    <header>
-      <a href="indexmain.php" class="logo">
-        <img src="images/qwalletlogo.png" alt="" style="height: 100px;width: 100px;">
-      </a>
-      <nav>
-        <a href="userhome.php">HOME</a>
-        <a href="scanqr.php">SCAN-QR</a>
-        <a href="balance.php">LEADERBOARD</a>
-        <a href="logout.php">LOG OUT</a>
-      </nav>
-    </header>
+            .wallet-history-content {
+                width: 100%;
+                margin: auto;
+                height: 90%;
+                overflow-y: scroll;
+                background-color: rgb(78, 122, 129);
+                border-top: 3px solid rgba(42, 151, 165, 0.587);
+            }
 
-    <div style="background:rgba(78,78,78,0.1);width:32%;height:310px;padding-top:5px;margin:0 auto;font-size:22px;"><div style="font-weight:bolder;text-align:center;">YOUR WALLET HISTORY</div>
-    <div class="wallet_history" style="width: 98%;margin:auto;height:98%;overflow-y: scroll;background: rgba(42, 151, 165, 0.187);">
-        <?php 
-        // Create connection
-$conn = new mysqli("localhost", "root", "", "user_registration");
-$useremail = $_SESSION['email'];
+            .hide {
+                display: none;
+            }
+        </style>
+    </head>
 
-//execute the query
-$sql = "SELECT email, points_rewarded, transaction_no, created_at FROM user_rewards ORDER BY transaction_no DESC";
-$result = mysqli_query($conn, $sql);
-$results = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    <body>
+        <header>
+            <div class="container">
+            <a href="indexmain.php" class="logo">
+                <img src="images/qwalletlogo.png" alt="" style="height: 100px;width: 100px;">
+            </a>
+            <nav>
+                <a href="userhome.php">HOME</a>
+                <a href="scanqr.php">SCAN-QR</a>
+                <a href="mywallet.php">MY-WALLET</a>
+                <a href="balance.php">LEADERBOARD</a>
+                <a href="logout.php">LOG OUT</a>
+            </nav>
+        </div>
+        </header>
 
-$sql = "SELECT name FROM registration WHERE email = '$useremail'";
-$name = mysqli_query($conn, $sql);
+        <button onclick="toggleWalletHistory()" class="btn" style="width: 15%;margin: 5% 43% 10px 43%;"></button>
 
-//output 
-//echo '<h1 style="width: 40%;margin: 20px auto;text-align: center;">' . $name ."'s wallet history</h1>";
-foreach ($results as $row) {
-    $created_at = date('H:i, d-m-Y. ', strtotime($row['created_at']));
-    echo '<br><div style="padding: 1px 20px;font-size:20px;margin: 1px auto;background:rgba( 78, 78, 78,0.1);">' . $row['points_rewarded'] . ' Points added<span style="float:right;"> - ' . $created_at . '<span></div>';
-}
-        ?>
-    </div>
-</div>  
+        <div id="walletHistory" class="wallet-history-container hide">
+            <div style="font-weight:bolder;padding-top:3px;padding-bottom:10px;text-align:center;text-transform:capitalize;text-decoration:underline;"><?php echo $_SESSION['name'];?>'S WALLET HISTORY</div>
+            <div class="wallet_history wallet-history-content">
+                <?php
+                // Create connection
+                $conn = new mysqli("localhost", "root", "", "user_registration");
+                $useremail = $_SESSION['email'];
+
+                //execute the query
+                $sql = "SELECT email, points_rewarded, transaction_no, created_at FROM user_rewards ORDER BY transaction_no DESC";
+                $result = mysqli_query($conn, $sql);
+                $results = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+                $sql = "SELECT name FROM registration WHERE email = '$useremail'";
+                $name = mysqli_query($conn, $sql);
+
+                //output 
+                foreach ($results as $row) {
+                    $created_at = date('H:i, d-m-Y. ', strtotime($row['created_at']));
+                    echo '<br><div style="padding: 1px 20px;font-size:20px;margin: 1px auto;background:rgba( 78, 78, 78,0.9);"><i>' . $row['points_rewarded'] . ' Points added</i><span style="float:right;"> - ' . $created_at . '</span></div>';
+                }
+                ?>
+            </div>
+        </div>
+        <script>
+            function toggleWalletHistory() {
+                var walletHistory = document.getElementById("walletHistory");
+                walletHistory.classList.toggle("hide");
+                var button = document.getElementsByTagName("button")[0];
+                if (walletHistory.classList.contains("hide")) {
+                    button.innerHTML = "Show Wallet History";
+                } else {
+                    button.innerHTML = "Hide Wallet History";
+                }
+            }
+
+            // Add this code to start with the wallet history content hidden
+            document.addEventListener("DOMContentLoaded", function(event) {
+                var walletHistory = document.getElementById("walletHistory");
+                walletHistory.classList.add("hide");
+                var button = document.getElementsByTagName("button")[0];
+                button.innerHTML = "Show Wallet History";
+            });
+        </script>
     </body>
 
-  </html>
+    </html>
 <?php
 } else {
-  header("location: index.html");
+    header("location: index.html");
 }
 ?>

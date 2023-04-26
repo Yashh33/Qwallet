@@ -17,7 +17,7 @@ if (isset($_SESSION['email']) && isset($_SESSION['name'])) {
     </head>
 
     <body>
-        <header>
+        <header><div class="container">
             <a href="userhome.php" class="logo">
                 <img src="images/qwalletlogo.png" alt="" style="height: 100px;width: 100px;">
             </a>
@@ -27,7 +27,7 @@ if (isset($_SESSION['email']) && isset($_SESSION['name'])) {
                 <a href="mywallet.php">MY-WALLET</a>
                 <a href="balance.php">LEADERBOARD</a>
                 <a href="logout.php">LOG OUT</a>
-            </nav>
+            </nav></div>
         </header>
 
         <div class="btns container" style="margin-top: 250px;">

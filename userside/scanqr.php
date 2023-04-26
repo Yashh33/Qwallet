@@ -15,38 +15,6 @@ if (isset($_SESSION['email']) && isset($_SESSION['name'])) {
         <title>Qwallet - ScanQR</title>
         <script src="./node_modules/html5-qrcode/html5-qrcode.min.js"></script>
         <style>
-            header {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                width: 80%;
-                margin: 0 auto;
-                /* mix-blend-mode: color-burn; */
-            }
-
-            nav {
-                width: 50%;
-                display: flex;
-                justify-content: space-between;
-                font-size: large;
-                font-weight: bolder;
-            }
-
-            nav a:hover {
-                background-color: rgba(42, 151, 165, 0.387);
-            }
-
-            nav a {
-                text-decoration: none;
-                color: black;
-                padding: 10px 2%;
-                border-radius: 5px;
-            }
-
-            body {
-                background: url(https://media.istockphoto.com/id/674585488/vector/money-seamless-pattern-background-with-icons.jpg?s=612x612&w=0&k=20&c=S3ids-pK5iG4m4andUB1J67P7ELQiVLROJo8sdwUR6M=);
-            }
-
             main {
                 display: flex;
                 justify-content: center;
@@ -69,26 +37,8 @@ if (isset($_SESSION['email']) && isset($_SESSION['name'])) {
             }
 
             @media only screen and (max-width : 650px) {
-                header {
-                    flex-direction: column;
-                    width: 100%;
-                }
-
-
-                .btn {
-                    width: 70%;
-                }
-
                 #reader {
                     scale: 0.4
-                }
-
-                nav {
-                    flex-wrap: wrap;
-                }
-
-                nav a {
-                    width: 30%;
                 }
             }
         </style>
@@ -97,22 +47,23 @@ if (isset($_SESSION['email']) && isset($_SESSION['name'])) {
 
     <body>
         <header>
+            <div class="container">
             <div class="logo">
                 <img src="images/qwalletlogo.png" alt="" style="height: 100px;width: 100px;">
             </div>
             <nav>
                 <a href="userhome.php">HOME</a>
                 <a href="scanqr.php">SCAN-QR</a>
+                <a href="mywallet.php">MY-WALLET</a>
                 <a href="balance.php">LEADERBOARD</a>
                 <a href="logout.php">LOG OUT</a>
             </nav>
+        </div>
         </header>
 
         <main>
             <!-- SCANNER LIBRARY -->
-            <div id="reader" style="font-size: 33px;scale: 1.2;margin-top: 5%;"></div>
-            <!-- SCAN RESULT  -->
-            <div id="result"></div>
+            <div id="reader" style="font-size: 25px;scale: 1.2;margin-top: 5%;background-color: rgb(78, 122, 129);border-radius:20px;color:white;"></div>
         </main>
 
 
