@@ -15,15 +15,39 @@
 
     .btn {
       padding: 10px 30px;
-      width: 20%;
+      width: 13%;
       text-decoration: none;
       font-family: Verdana, Geneva, Tahoma, sans-serif;
       background-color: white;
-      margin: 10% 37%;
+      margin: 1% 41.5%;
       color: black;
       font-size: 20px;
-      font-weight: bold;
       border-radius: 5px;
+    }
+
+    .buttons {
+      display: flex;
+      width: 30%;
+      margin: 20px auto;
+    }
+
+    button {
+      padding: 10px 10px;
+      background: #28616bd8;
+      border: 0;
+      margin: 0px 2px;
+      width: 48%;
+      font-size: medium;
+      border-radius: 3px;
+      color: white;
+      font-weight: bold;
+    }
+
+    #Qr-output {
+      text-align: center;
+      margin: 13px auto;
+      mix-blend-mode: color-burn;
+      width: 14%;
     }
   </style>
 </head>
@@ -31,7 +55,7 @@
 <body>
   <header>
     <a href="userhome.php" class="logo">
-      <img src="qwalletlogo.png" alt="" style="height: 100px;width: 100px;margin: 20px 44%;">
+      <img src="qwalletlogo.png" alt="" style="height: 100px;width: 100px;margin: 20px 47%;">
     </a>
   </header>
 
@@ -44,7 +68,7 @@
     <button id="download-btn">Download QR</button>
   </div>
 
-<div id="Qr-output"></div>
+  <div id="Qr-output"></div>
 
   <div class="btn">
     <?php
@@ -64,7 +88,7 @@
     $results = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
     // gives the output of the result
-    echo '<i>PAST REWARDS</i><br><br>';
+    echo '<i><b>PAST REWARDS</b></i><br><br>';
     echo '<div>';
     foreach ($results as $row) {
       echo $row['reward_id'] . ': ' . $row['reward_points'] . '<br>';
@@ -75,35 +99,24 @@
     $result = mysqli_query($conn, $sql);
     $results = mysqli_fetch_all($result, MYSQLI_ASSOC);
     foreach ($results as $row) {
-    $idforQR = $row['reward_id']; 
+      $idforQR = $row['reward_id'];
     }
     ?>
-    </div>
+  </div>
 
-    
+
 </body>
 <script>
-  // // generates qr code
-  // document.getElementById('btn').addEventListener('click', function() {
-  //   const uniqueId = document.getElementById('reward_id').value;
-  //   // make new url for the qr code
-  //   const url = `http://localhost/qwallet/userside/wallet.php?id=${uniqueId}==`;
-  //   //updates id= Qr-output 
-  //   const QrCode = document.getElementById('Qr-output');
-  //   QrCode.innerHTML = "<b>SCAN TO EARN POINTS</b>";
-  //   // generates the qr code
-  //   new QRCode(QrCode, url);
-  // })
-// generates qr code
-document.getElementById('btn').addEventListener('click', function() {
-    
-    const url = `http://localhost/qwallet/userside/wallet.php?id=<?php echo $idforQR;?>`;
+  // generates qr code
+  document.getElementById('btn').addEventListener('click', function() {
+
+    const url = `http://localhost/qwallet/userside/wallet.php?id=<?php echo $idforQR; ?>`;
     //updates id= Qr-output 
     const QrCode = document.getElementById('Qr-output');
     QrCode.innerHTML = "<b>SCAN TO EARN POINTS</b>";
     // generates the qr code
     new QRCode(QrCode, url);
-})
+  })
   //download qr code
   const downloadBtn = document.getElementById('download-btn');
   const QrOutput = document.getElementById('Qr-output');

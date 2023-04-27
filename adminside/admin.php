@@ -32,9 +32,7 @@ $conn = mysqli_connect($host, "root", "", $dbname);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="admin.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Qwallet Admin panel</title>
 </head>
 
@@ -52,10 +50,10 @@ $conn = mysqli_connect($host, "root", "", $dbname);
             </div>
 
             <div class="input">
-                <input type="text" placeholder="Points to give" name="reward_points">
+                <input type="text" placeholder="ENTER REWARD POINTSgi" name="reward_points">
             </div>
 
-            <div class="buttons">
+            <div class="buttons" style="justify-content: center;">
                 <button>SUBMIT</button>
             </div>
         </form>
@@ -82,33 +80,6 @@ $conn = mysqli_connect($host, "root", "", $dbname);
         ?>
         
     </div>
-
-    <script>
-        // generates qr code
-        document.getElementById('btn').addEventListener('click', function() {
-            const uniqueId = document.getElementById('reward_id').value;
-            // make new url for the qr code
-            const url = `http://localhost/qwallet/userside/wallet.php?id=${uniqueId}`;
-            //updates id= Qr-output 
-            const QrCode = document.getElementById('Qr-output');
-            QrCode.innerHTML = "<b>SCAN TO EARN POINTS</b>";
-            // generates the qr code
-            new QRCode(QrCode, url);
-        })
-
-        //download qr code
-        const downloadBtn = document.getElementById('download-btn');
-        const QrOutput = document.getElementById('Qr-output');
-        //adds the download button  
-        downloadBtn.addEventListener('click', function() {
-            const qrImage = QrOutput.querySelector('img');
-            const url = qrImage.src;
-            const link = document.createElement('a');
-            link.download = 'qrcode.png';
-            link.href = url;
-            link.click();
-        });
-    </script>
 </body>
 
 </html>
