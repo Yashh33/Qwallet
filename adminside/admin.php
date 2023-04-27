@@ -50,7 +50,7 @@ $conn = mysqli_connect($host, "root", "", $dbname);
             </div>
 
             <div class="input">
-                <input type="text" placeholder="ENTER REWARD POINTSgi" name="reward_points">
+                <input type="text" placeholder="ENTER REWARD POINTS" name="reward_points">
             </div>
 
             <div class="buttons" style="justify-content: center;">
