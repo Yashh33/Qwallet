@@ -72,10 +72,11 @@ if (isset($_SESSION['email']) && isset($_SESSION['name'])) {
                 $useremail = $_SESSION['email'];
 
                 //execute the query
-                $sql = "SELECT email, points_rewarded, transaction_no, created_at FROM user_rewards ORDER BY transaction_no DESC";
+                $sql = "SELECT email, points_rewarded, transaction_no, created_at FROM user_rewards 
+                WHERE email = '$useremail' ORDER BY transaction_no DESC ";
                 $result = mysqli_query($conn, $sql);
                 $results = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
+                
                 $sql = "SELECT name FROM registration WHERE email = '$useremail'";
                 $name = mysqli_query($conn, $sql);
 

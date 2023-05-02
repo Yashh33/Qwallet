@@ -54,7 +54,7 @@ $conn = mysqli_connect($host, "root", "", $dbname);
             </div>
 
             <div class="buttons" style="justify-content: center;">
-                <button>SUBMIT</button>
+                <button style="width:100%;">SUBMIT</button>
             </div>
         </form>
         <?php
