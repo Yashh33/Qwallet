@@ -13,9 +13,13 @@
       background-color: rgba(137, 43, 226, 0.219);
     }
 
+    .reward_box{
+      height: 200px;
+      overflow-y: scroll;
+    }
+
     .btn {
       padding: 10px 30px;
-      width: 13%;
       text-decoration: none;
       font-family: Verdana, Geneva, Tahoma, sans-serif;
       background-color: white;
@@ -59,7 +63,7 @@
     </a>
   </header>
 
-  <a class="btn" href="http://localhost/qwallet/userside/index.html">
+  <a class="btn" style="display:inline-block;width:270px;" href="http://localhost/qwallet/userside/index.html">
     Click to move userside!
   </a>
 
@@ -70,7 +74,7 @@
 
   <div id="Qr-output"></div>
 
-  <div class="btn">
+  <div class="btn" style="padding-right:0;width:300px;">
     <?php
     // Connect to the database
     $host = 'localhost';
@@ -89,9 +93,9 @@
 
     // gives the output of the result
     echo '<i><b>PAST REWARDS</b></i><br><br>';
-    echo '<div>';
+    echo '<div class="reward_box">';
     foreach ($results as $row) {
-      echo $row['reward_id'] . ': ' . $row['reward_points'] . '<br>';
+      echo '<div class="rewardline" style="margin:5px auto;">' . $row['reward_id'] . ': ' . $row['reward_points'] . '</div>';
     }
     echo '</div>';
 
