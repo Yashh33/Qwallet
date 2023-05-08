@@ -87,7 +87,7 @@ if (isset($_SESSION['email']) && isset($_SESSION['name'])) {
                 }
                 ?>
             </div>
-            <div style="font-weight:bolder;padding-top:3px;padding-bottom:3px;text-align:center;text-transform:capitalize;"> YOUR BALANCE - <?php $sql = "SELECT wallet_balance FROM registration WHERE email = '$useremail'";$bal = mysqli_query($conn, $sql);$row = mysqli_fetch_assoc($bal);echo $row['wallet_balance'] . ' POINTS'; ?></div>
+            <div style="font-weight:bolder;padding-top:3px;padding-bottom:3px;text-align:center;text-transform:capitalize;"> YOUR BALANCE : <?php $sql = "SELECT wallet_balance FROM registration WHERE email = '$useremail'";$bal = mysqli_query($conn, $sql);$row = mysqli_fetch_assoc($bal);echo $row['wallet_balance'] . ' POINTS'; ?></div>
         </div>
         <script>
             function toggleWalletHistory() {
