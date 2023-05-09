@@ -14,6 +14,8 @@ if (isset($_SESSION['email']) && isset($_SESSION['name'])) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Qwallet - ScanQR</title>
         <script src="./node_modules/html5-qrcode/html5-qrcode.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.6/dist/sweetalert2.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.0/dist/sweetalert2.min.js"></script>
         <style>
             main {
                 display: flex;
@@ -29,6 +31,9 @@ if (isset($_SESSION['email']) && isset($_SESSION['name'])) {
                 text-align: center;
                 font-size: 1.5rem;
             }
+            .swal2-styled.swal2-confirm{
+                background-color: rgb(78, 122, 129);
+            }.swal2-styled{margin:auto 30px;}
 
             @media only screen and (max-width : 1000px) {
                 #reader {
@@ -56,7 +61,7 @@ if (isset($_SESSION['email']) && isset($_SESSION['name'])) {
                 <a href="scanqr.php">SCAN-QR</a>
                 <a href="mywallet.php">MY-WALLET</a>
                 <a href="balance.php">LEADERBOARD</a>
-                <a href="logout.php">LOG OUT</a>
+                <a href="logout.php" id="logout-link">LOGOUT</a>
             </nav>
         </div>
         </header>
@@ -98,6 +103,7 @@ if (isset($_SESSION['email']) && isset($_SESSION['name'])) {
             }
         </script>
     </body>
+    <script src="logout.js"></script>
 
     </html>
 
